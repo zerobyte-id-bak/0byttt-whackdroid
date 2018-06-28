@@ -52,7 +52,7 @@ then
 
 	for PATH in $(cat /data/data/com.termux/files/usr/share/whackdroid/list/loginpath.lst);
 	do
-		URLS=$(echo ${URL}/${PATH} | sed 's|//|/|g' | sed 's|//|/|g' | sed 's|//|/|g' | sed 's|:|://|g');
+		URLS=${URL}/${PATH};
 		HTTPCODE=$(curl -s -o /dev/null -w "%{http_code}" "${URLS}");
 		if [[ ${HTTPCODE} == "200" ]];
 			then
