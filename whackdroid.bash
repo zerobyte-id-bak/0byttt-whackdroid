@@ -84,7 +84,7 @@ then
 	echo "[?] Insert URL [example.com] : ";
 	read URLD
 	URL=$(echo ${URLD} | sed 's|http://||g' | sed 's|https://||g' | sed 's|/||g');
-	REVIPWEBS=$(curl -s -X POST -F "remoteAddress=${URL}" -F "key=" "https://domains.yougetsignal.com/domains.php" | grep -Po '\["\K.*?(?=", )');
+	REVIPWEBS=$(curl -s -X POST -F "remoteAddress=${URL}" -F "key=" "https://domains.yougetsignal.com/domains.php" | sed 's|\["|\nDomain |g' | sed 's|"|\n|g' | grep 'Domain' | awk '{print $2}');
 	if [[ -z ${REVIPWEBS} ]];
 		then
 		echo "[BAD] Something wrong!";
