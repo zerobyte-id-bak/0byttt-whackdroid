@@ -1,12 +1,16 @@
 #!/data/data/com.termux/files/usr/bin/bash
+# Source : https://github.com/zerobyte-id/0byttt-whackdroid
+# By ZeroByte.ID Team
 
 VERSION='1.0';
 APPSDIR="/data/data/com.termux/files/usr/share/whackdroid";
+CURL="/data/data/com.termux/files/usr/bin/curl";
+TIMEOUT="/data/data/com.termux/files/usr/bin/timeout";
 echo "       _           _     _         _   _ ";
 echo " _ _ _| |_ ___ ___| |_ _| |___ ___|_|_| |";
 echo "| | | |   | .'|  _| '_| . |  _| . | | . |";
 echo "|_____|_|_|__,|___|_,_|___|_| |___|_|___|";
-echo "--- V 1.0 - 0byte Termux Tool Project ---";
+echo "--- V ${VERSION} - 0byte Termux Tool Project ---";
 echo "---                by www.zerobyte.id ---";
 echo "";
 echo "### Web Cracking ###";
@@ -53,12 +57,12 @@ then
 	for PATH in $(cat /data/data/com.termux/files/usr/share/whackdroid/list/loginpath.lst);
 	do
 		URLS=${URL}/${PATH};
-		HTTPCODE=`/data/data/com.termux/files/usr/bin/curl -s -o /dev/null -w "%{http_code}" "${URLS}"`;
+		HTTPCODE=`${TIMEOUT} -k 3 3 ${CURL} -s -o /dev/null -w "%{http_code}" "${URLS}"`;
 		if [[ ${HTTPCODE} == "200" ]];
 			then
 			echo "[INFO][${HTTPCODE}] ${URLS} Found!";
 			echo "[${HTTPCODE}] ${URLS}" >> ${WEBDIR}/path.txt;
-			if [[ `/data/data/com.termux/files/usr/bin/curl -s ${URLS} | grep '<input' | grep 'type'` =~ 'password' ]];
+			if [[ `${CURL} -s ${URLS} | grep '<input' | grep 'type'` =~ 'password' ]];
 				then
 				echo "[OK] Found a password form!";
 				echo "[!] ${URLS}";
