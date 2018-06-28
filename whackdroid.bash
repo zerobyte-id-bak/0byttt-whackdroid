@@ -44,7 +44,7 @@ then
 elif [[ ${MENU} == '1' ]];
 then
 	echo "[*] Weblogin Finder";
-	echo "[?] Insert URL [http://example.com/] : ";
+	echo -ne "[?] Insert URL [http://example.com/] : ";
 	read URL
 	WEBLIB=$(echo ${URL} | sed 's|http://||g' | sed 's|https://||g' | sed 's|/||g');
 	WEBDIR="${APPSDIR}/data/${WEBLIB}";
@@ -62,7 +62,7 @@ then
 				then
 				echo "[OK] Found a password form!";
 				echo "[!] ${URLS}";
-				echo "[?] Wanna stop scanning? [y/n] : "
+				echo -ne "[?] Wanna stop scanning? [y/n] : "
 				read CHOOSE
 				if [[ ${CHOOSE} == 'y' ]];
 					then
@@ -81,7 +81,7 @@ elif [[ ${MENU} == '2' ]];
 then
 	echo "[*] Reverse IP";
 	echo "[*] Powered by YouGetSignal";
-	echo "[?] Insert URL [example.com] : ";
+	echo -ne "[?] Insert URL [example.com] : ";
 	read URLD
 	URL=$(echo ${URLD} | sed 's|http://||g' | sed 's|https://||g' | sed 's|/||g');
 	REVIPWEBS=$(curl -s -X POST -F "remoteAddress=${URL}" -F "key=" "https://domains.yougetsignal.com/domains.php" | sed 's|\["|\nDomain |g' | sed 's|"|\n|g' | grep 'Domain' | awk '{print $2}');
@@ -98,5 +98,5 @@ then
 		done
 	fi
 else
-	echo "[FAIL] Failed to open!";
+	echo "Failed to open!";
 fi
