@@ -1,5 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-#/data/data/com.termux/files/usr/share/whackdroid/
+
 VERSION='1.0';
 APPSDIR="/data/data/com.termux/files/usr/share/whackdroid";
 echo "       _           _     _         _   _ ";
@@ -23,7 +23,7 @@ read MENU
 if [[ ${MENU} == '!' ]];
 then
 	echo "[INFO] Upgrade...";
-	LASTUPDATE='1.0';
+	LASTUPDATE=$(curl -s "https://raw.githubusercontent.com/zerobyte-id/0byttt-whackdroid/master/VERSION");
 	if [[ ${LASTUPDATE} == ${VERSION} ]];
 		then
 		echo "[FAIL] Your version has been latest version!";
