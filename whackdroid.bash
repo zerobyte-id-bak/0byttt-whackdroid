@@ -89,6 +89,7 @@ then
 		then
 		echo "[BAD] Something wrong!";
 	else
+		echo "[*] Weblist :";
 		i=0;
 		for WEB in ${REVIPWEBS}
 		do
@@ -97,5 +98,5 @@ then
 		done
 	fi
 else
-	echo "Failed to open!";
+	echo "[FAIL] Failed to open!";
 fi
