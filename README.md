@@ -1,7 +1,7 @@
 # 0byttt-whackdroid
 Whackdroid is Web Hacking Android from 0byte Termux Tools Project
 
-Installation :
+### Installation :
 
 `git clone https://github.com/zerobyte-id/0byttt-whackdroid.git`
 
@@ -11,3 +11,7 @@ Installation :
 
 `./install.sh
 `
+
+### Tools :
+1. Webadmin Finder
+2. Reverse IP (Powered by YouGetSignal)
