@@ -52,13 +52,13 @@ then
 
 	for PATH in $(cat /data/data/com.termux/files/usr/share/whackdroid/list/loginpath.lst);
 	do
-		URLS="${URL}/${PATH}";
-		HTTPCODE=$(timeout -k 3 3 curl -s -o /dev/null -w "%{http_code}" "${URLS}");
+		URLS=$(echo ${URL}/${PATH} | sed 's|//|/|g' | sed 's|//|/|g' | sed 's|//|/|g' | sed 's|:|://|g');
+		HTTPCODE=$(curl -s -o /dev/null -w "%{http_code}" "${URLS}");
 		if [[ ${HTTPCODE} == "200" ]];
 			then
 			echo "[INFO][${HTTPCODE}] ${URLS} Found!";
 			echo "[${HTTPCODE}] ${URLS}" >> ${WEBDIR}/path.txt;
-			if [[ $(timeout -k 3 3 curl -s ${URLS} | grep '<input' | grep 'type') =~ 'password' ]];
+			if [[ $(curl -s ${URLS} | grep '<input' | grep 'type') =~ 'password' ]];
 				then
 				echo "[OK] Found a password form!";
 				echo "[!] ${URLS}";
