@@ -28,7 +28,8 @@ then
 		then
 		echo "[FAIL] Your version has been latest version!";
 	else
-		echo "[INFO] Installing...";
+		echo "[INFO] Updating...";
+		whackdroid-update
 	fi
 elif [[ ${MENU} == '0' ]];
 then
