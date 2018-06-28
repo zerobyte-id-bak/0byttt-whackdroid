@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 #/data/data/com.termux/files/usr/share/whackdroid/
 VERSION='1.0';
-
+APPSDIR="/data/data/com.termux/files/usr/share/whackdroid";
 echo "       _           _     _         _   _ ";
 echo " _ _ _| |_ ___ ___| |_ _| |___ ___|_|_| |";
 echo "| | | |   | .'|  _| '_| . |  _| . | | . |";
@@ -46,10 +46,10 @@ then
 	echo "[?] Insert URL [http://example.com/] : ";
 	read URL
 	WEBLIB=$(echo ${URL} | sed 's|http://||g' | sed 's|https://||g' | sed 's|/||g');
-	WEBDIR="${HOMEDIR}/.whackdroid/data/${WEBLIB}";
+	WEBDIR="${APPSDIR}/data/${WEBLIB}";
 	mkdir ${WEBDIR}
 
-	for PATH in $(cat ${HOMEDIR}/whackdroid/list/loginpath.lst);
+	for PATH in $(cat /data/data/com.termux/files/usr/share/whackdroid/list/loginpath.lst);
 	do
 		URLS="${URL}/${PATH}";
 		HTTPCODE=$(timeout -k 3 3 curl -s -o /dev/null -w "%{http_code}" "${URLS}");
