@@ -2,10 +2,11 @@
 # Source : https://github.com/zerobyte-id/0byttt-whackdroid
 # By ZeroByte.ID Team
 
-VERSION='1.0';
+VERSION='1.1';
 APPSDIR="/data/data/com.termux/files/usr/share/whackdroid";
 CURL="/data/data/com.termux/files/usr/bin/curl";
 TIMEOUT="/data/data/com.termux/files/usr/bin/timeout";
+
 echo "       _           _     _         _   _ ";
 echo " _ _ _| |_ ___ ___| |_ _| |___ ___|_|_| |";
 echo "| | | |   | .'|  _| '_| . |  _| . | | . |";
@@ -16,6 +17,7 @@ echo "";
 echo "### Web Cracking ###";
 echo "[1] Webadmin Finder";
 echo "[2] Reverse IP (Yougetsignal)";
+echo "[3] Subdomain Enumeration";
 echo "";
 echo "[?] Help";
 echo "[!] Upgrade";
@@ -101,6 +103,28 @@ then
 			echo "[${i}]. ${WEB}";
 		done
 	fi
+### SUBDOMAIN ENUMERATION ###
+elif [[ ${MENU} == '3' ]];
+then
+	SUBDOMAINS=$(cat /data/data/com.termux/files/usr/share/whackdroid/list/subdomain.lst);
+	HOSTCMD=$(command -v host);
+	if [[ -z ${HOSTCMD} ]];
+		then
+		pkg install dnsutils
+	fi
+	echo "[*] Subdomain Enumeration";
+	echo -ne "[?] Insert Domain [example.com] : ";
+	read DOMAIN
+	for SUB in ${SUBDOMAINS};
+	do
+		DNSIP=$(${HOSTCMD} "${SUB}.${DOMAIN}" | awk '{print $4}' | head -1 | grep [0-9]);
+		if [[ ! -z ${DNSIP} ]];
+			then
+			echo "[OK] ${SUB}.${DOMAIN} => [${DNSIP}]";
+		else
+			echo "[BAD] ${SUB}.${DOMAIN}";
+		fi
+	done
 else
-	echo "Failed to open!";
+	echo "[FAIL] Failed to open!";
 fi
