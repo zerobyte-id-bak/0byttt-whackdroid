@@ -15,3 +15,8 @@ Whackdroid is Web Hacking Android from 0byte Termux Tools Project
 ### Tools :
 1. Webadmin Finder
 2. Reverse IP (Powered by YouGetSignal)
+3. Subdomain Enumeration
+
+### Changelog
+1.0 - First commit with both tools: Webadmin Finder & Reverse IP
+1.1 - Tool Subdomain Enumeration added
