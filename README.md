@@ -19,4 +19,5 @@ Whackdroid is Web Hacking Android from 0byte Termux Tools Project
 
 ### Changelog
 1.0 - First commit with both tools: Webadmin Finder & Reverse IP
+
 1.1 - Tool Subdomain Enumeration added
